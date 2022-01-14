@@ -103,11 +103,15 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 	{
 		for (int InstanceCount = 0; InstanceCount < PrevLength ; InstanceCount += 1)
 		{
-			CompareInstance[InstanceCount] = TextOriginal[TextOriCount+InstanceCount];
+			if (TextOriCount + InstanceCount > TextLength)
+			{
+				CompareInstance[InstanceCount] = 0;
+			}
+			CompareInstance[InstanceCount] = TextOriginal[TextOriCount + InstanceCount];
 		}
 		if (strcmp(CompareInstance, _Prev) == 0)
 		{
-			TextLength += Lengthdiff;
+			
 			for (int i = 0; i < TextLength; i += 1)
 			{
 				int k = 0;
@@ -121,7 +125,9 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 					_Text[i] = TextOriginal[i-Lengthdiff];
 				}
 			}
-			TextCount += Lengthdiff;
+			TextCount = TextOriCount + PrevLength;
+			TextOriCount += PrevLength - 1;
+
 		}
 		TextCount += 1;
 		TextOriCount += 1;
@@ -202,3 +208,5 @@ int main()
 	}
 
 }
+
+
