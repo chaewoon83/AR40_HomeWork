@@ -99,6 +99,7 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 	char CompareInstance[100] = {};
 	int Lengthdiff = NextLength - PrevLength;
 	int TextLength = StringLength(_Text);
+	int sametimes = 0;
 	while (TextOriginal[TextOriCount] != 0)
 	{
 		for (int InstanceCount = 0; InstanceCount < PrevLength ; InstanceCount += 1)
@@ -111,7 +112,8 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 		}
 		if (strcmp(CompareInstance, _Prev) == 0)
 		{
-			
+			sametimes += 1;
+			TextLength += Lengthdiff;
 			for (int i = 0; i < TextLength; i += 1)
 			{
 				int k = 0;
@@ -122,18 +124,22 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 				}
 				else if (TextCount + NextLength <= i)
 				{
-					_Text[i] = TextOriginal[i-Lengthdiff];
+					_Text[i] = TextOriginal[i-sametimes*Lengthdiff];
 				}
 			}
-			TextCount = TextOriCount + PrevLength;
 			TextOriCount += PrevLength - 1;
-
+			TextCount += Lengthdiff + PrevLength - 1 ;
 		}
 		TextCount += 1;
 		TextOriCount += 1;
+		printf_s("%c\n", _Text[TextCount]);
+		printf_s("%c\n",TextOriginal[TextOriCount]);
 		int a = 0;
 	}
 }
+//+		_Text	        0x00000052831ff560 "fff, bb, fff, bb fff fff fff fffffffffa ccdffeds"	char *
+//+		TextOriginal	0x00000052831fdea0 "aa, bb, aa, bb aa aa aa aaaaaaa ccdffeds"	char[3000]
+
 
 int main()
 {
