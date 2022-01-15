@@ -239,6 +239,12 @@ int main()
 		TextChange(Text1, "aa", "f");
 		printf_s(Text1);
 		printf_s("\n");
+
+		char Text2[100] = "abcd abefabbdgds";
+
+		TextChange(Text2, "ab", "g");
+		printf_s(Text2);
+		printf_s("\n");
 //+		Text1	0x000000209e2ff8e0 "f, bb, f, bb f f f fffa ccdffedsssssssss"	char[100]
 
 
