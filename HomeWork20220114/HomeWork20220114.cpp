@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <stdlib.h>
 
 
 int StringLength(const char* Text)
@@ -91,7 +92,7 @@ void Cut(const char* _Sorce, int _Start, int _End, char* _Result)
 void TextChange(char* _Text, const char* _Prev, const char* _Next)
 {
 	int TextOriCount = 0;
-	char TextOriginal[3000] = {};
+	char TextOriginal[3000] = {0};
 	strcpy_s(TextOriginal, _Text);
 	int TextCount = 0;
 	int PrevLength = StringLength(_Prev);
@@ -100,6 +101,7 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 	int Lengthdiff = NextLength - PrevLength;
 	int TextLength = StringLength(_Text);
 	int sametimes = 0;
+	int TextOriLength = StringLength(TextOriginal);
 	while (TextOriginal[TextOriCount] != 0)
 	{
 		for (int InstanceCount = 0; InstanceCount < PrevLength ; InstanceCount += 1)
@@ -114,17 +116,40 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 		{
 			sametimes += 1;
 			TextLength += Lengthdiff;
-			for (int i = 0; i < TextLength; i += 1)
+			if (Lengthdiff >= 0) 
 			{
-				int k = 0;
-				if (TextCount <= i && i < TextCount + NextLength)
+				for (int i = 0; i < TextLength; i += 1)
 				{
-					_Text[i] = _Next[k];
-					k += 1;
+					int k = 0;
+					if (TextCount <= i && i < TextCount + NextLength)
+					{
+						_Text[i] = _Next[k];
+						k += 1;
+					}
+					else if (TextCount + NextLength <= i && i < TextLength)
+					{
+						_Text[i] = TextOriginal[i - sametimes * Lengthdiff];
+					}
 				}
-				else if (TextCount + NextLength <= i)
+			}
+			if (Lengthdiff < 0)
+			{
+				for (int i = 0; i < TextLength - Lengthdiff; i += 1)
 				{
-					_Text[i] = TextOriginal[i-sametimes*Lengthdiff];
+					int k = 0;
+					if (TextCount <= i && i < TextCount + NextLength)
+					{
+						_Text[i] = _Next[k];
+						k += 1;
+					}
+					else if (TextCount + NextLength <= i && i < TextLength)
+					{
+						_Text[i] = TextOriginal[i - sametimes * Lengthdiff];
+					}
+					else if (TextLength <= i)
+					{
+						_Text[i] = 0;
+					}
 				}
 			}
 			TextOriCount += PrevLength - 1;
@@ -132,9 +157,6 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 		}
 		TextCount += 1;
 		TextOriCount += 1;
-		printf_s("%c\n", _Text[TextCount]);
-		printf_s("%c\n",TextOriginal[TextOriCount]);
-		int a = 0;
 	}
 }
 //+		_Text	        0x00000052831ff560 "fff, bb, fff, bb fff fff fff fffffffffa ccdffeds"	char *
@@ -211,6 +233,15 @@ int main()
 		// "fff, bb, fff, bb fff fff fff fffffffffa ccdffeds";
 		printf_s(Text);
 		printf_s("\n");
+
+		char Text1[100] = "aa, bb, aa, bb aa aa aa aaaaaaa ccdffeds";
+
+		TextChange(Text1, "aa", "f");
+		printf_s(Text1);
+		printf_s("\n");
+//+		Text1	0x000000209e2ff8e0 "f, bb, f, bb f f f fffa ccdffedsssssssss"	char[100]
+
+
 	}
 
 }
