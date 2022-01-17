@@ -45,10 +45,10 @@ void ToUpper(const char* _Left, char* _Right)
 }
 
 // 좀 어려울거다.
-int Result = 0;
+
 	int ToInt(const char* _Left)
 {
-	
+	int Result = 0;
 	for ( int i = 0; _Left[i] != 0; i += 1)
 	{
 		if (i != 0)
@@ -91,28 +91,33 @@ void Cut(const char* _Sorce, int _Start, int _End, char* _Result)
 
 void TextChange(char* _Text, const char* _Prev, const char* _Next)
 {
-	int TextOriCount = 0;
-	char TextOriginal[3000] = {0};
+	char TextOriginal[3000] = { 0 };
 	strcpy_s(TextOriginal, _Text);
+	char Comparetemp[100] = {};
+	int TextOriCount = 0;
 	int TextCount = 0;
 	int PrevLength = StringLength(_Prev);
 	int NextLength = StringLength(_Next);
-	char CompareInstance[100] = {};
 	int Lengthdiff = NextLength - PrevLength;
 	int TextLength = StringLength(_Text);
 	int sametimes = 0;
 	int TextOriLength = StringLength(TextOriginal);
+
 	while (TextOriginal[TextOriCount] != 0)
 	{
-		for (int InstanceCount = 0; InstanceCount < PrevLength ; InstanceCount += 1)
+		if (TextOriLength < PrevLength)
 		{
-			if (TextOriCount + InstanceCount > TextLength)
-			{
-				CompareInstance[InstanceCount] = 0;
-			}
-			CompareInstance[InstanceCount] = TextOriginal[TextOriCount + InstanceCount];
+			return;
 		}
-		if (strcmp(CompareInstance, _Prev) == 0)
+		for (int tempCount = 0; tempCount < PrevLength ; tempCount += 1)
+		{
+			if (TextOriCount + tempCount > TextLength)
+			{
+				Comparetemp[tempCount] = 0;
+			}
+			Comparetemp[tempCount] = TextOriginal[TextOriCount + tempCount];
+		}
+		if (strcmp(Comparetemp, _Prev) == 0)
 		{
 			sametimes += 1;
 			TextLength += Lengthdiff;
