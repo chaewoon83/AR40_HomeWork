@@ -45,8 +45,7 @@ void ToUpper(const char* _Left, char* _Right)
 }
 
 // 좀 어려울거다.
-
-	int ToInt(const char* _Left)
+int ToInt(const char* _Left)
 {
 	int Result = 0;
 	for ( int i = 0; _Left[i] != 0; i += 1)
