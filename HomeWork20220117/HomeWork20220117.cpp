@@ -17,7 +17,16 @@ int CountFirst(const char* _Text, int _Start,  const char* _FindStr)
 	int FindStrSize = StringLength(_FindStr);
 	char temp[100] = { 0 };
 
-	for (int i = _Start - 1; _Text[i] != 0; i += 1) 
+	if (FindStrSize > TextSize)
+	{
+		return -1;
+	}
+	if (_Start > TextSize)
+	{
+		return -1;
+	}
+
+	for (int i = _Start; _Text[i] != 0; i += 1) 
 	{
 		for (int j = 0; j < FindStrSize; j += 1)
 		{
@@ -25,20 +34,52 @@ int CountFirst(const char* _Text, int _Start,  const char* _FindStr)
 		}
 		if (strcmp(temp, _FindStr) == 0)
 		{
-			return i;
+			return  i - _Start;
 		}
 
 	}
+	return -1;
 }
 //_FindStr이 시작하는 위치 (마지막부터 찾기 시작)
-int CountLast(const char* _Text, int End, const char* _FindStr)
+int CountLast(const char* _Text, int _End, const char* _FindStr)
 {
-    return 0;
+	int TextSize = StringLength(_Text);
+	int FindStrSize = StringLength(_FindStr);
+	int End = 0;
+	char temp[100] = { 0 };
+
+	if (FindStrSize > TextSize)
+	{
+		return -1;
+	}
+	if (_End > TextSize - FindStrSize)
+	{
+		End = TextSize - FindStrSize;
+	}
+	else
+	{
+		End = _End;
+	}
+
+	for (int i = End; _Text[i] != 0; i -= 1)
+	{
+		for (int j = 0; j < FindStrSize; j += 1)
+		{
+			temp[j] = _Text[j + i];
+		}
+		if (strcmp(temp, _FindStr) == 0)
+		{
+			return End - i;
+		}
+
+	}
+	return -1;
 }
 
 int main()
 {
     int Count = CountFirst("aaa eee ttt asdfasd", 0, "eee");
+	int Count2 = CountFirst("aaa eee ttt asdfasd", 3, "eee");
+    int Count3 = CountLast("aaa eee ttt asdfasd", 10, "eee");
 	int a = 0;
-    int Count = CountLast("aaa eee ttt asdfasd", 50, "eee");
 }
