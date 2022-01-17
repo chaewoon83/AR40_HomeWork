@@ -166,7 +166,6 @@ void TextChange(char* _Text, const char* _Prev, const char* _Next)
 //+		_Text	        0x00000052831ff560 "fff, bb, fff, bb fff fff fff fffffffffa ccdffeds"	char *
 //+		TextOriginal	0x00000052831fdea0 "aa, bb, aa, bb aa aa aa aaaaaaa ccdffeds"	char[3000]
 
-
 int main()
 {
 
