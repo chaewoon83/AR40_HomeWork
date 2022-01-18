@@ -84,5 +84,6 @@ int main()
 	int Count4 = CountLast("aaa eee ttt asdfasd", 1013, "eee");
 	int Count5 = CountLast("aaa ee ttt asdfasd", 1013, "eee");
 	int Count6 = CountLast("aaa ee ttt asdfasd", 1013, "as");
+	int Count7 = CountLast("abcd efg hijk", 7, "c");
 	int a = 0;
 }
