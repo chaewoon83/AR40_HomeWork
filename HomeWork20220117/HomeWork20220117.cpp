@@ -34,7 +34,7 @@ int CountFirst(const char* _Text, int _Start,  const char* _FindStr)
 		}
 		if (strcmp(temp, _FindStr) == 0)
 		{
-			return  i - _Start;
+			return  i - _Start + 1;
 		}
 
 	}
@@ -54,22 +54,22 @@ int CountLast(const char* _Text, int _End, const char* _FindStr)
 	}
 	if (_End > TextSize - FindStrSize)
 	{
-		End = TextSize - FindStrSize;
+		End = TextSize -1;
 	}
 	else
 	{
-		End = _End;
+		End = _End - 1;
 	}
 
 	for (int i = End; _Text[i] != 0; i -= 1)
 	{
-		for (int j = 0; j < FindStrSize; j += 1)
+		for (int j = 0; j < FindStrSize && j + i < TextSize; j += 1)
 		{
 			temp[j] = _Text[j + i];
 		}
 		if (strcmp(temp, _FindStr) == 0)
 		{
-			return End - i;
+			return End - i + 1;
 		}
 
 	}
@@ -81,5 +81,6 @@ int main()
     int Count = CountFirst("aaa eee ttt asdfasd", 0, "eee");
 	int Count2 = CountFirst("aaa eee ttt asdfasd", 3, "eee");
     int Count3 = CountLast("aaa eee ttt asdfasd", 10, "eee");
+	int Count4 = CountLast("aaa eee ttt asdfasd", 1013, "eee");
 	int a = 0;
 }
