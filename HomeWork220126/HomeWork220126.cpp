@@ -2,33 +2,10 @@
 //
 
 #include <iostream>
-
-class MyInt 
-{
-public:
-    int Value;
-
-public:
-    //posfix
-    MyInt operator++ (int);
-    //prefix
-    MyInt&operator++ ();
-    //복사생성자
-    MyInt& operator= (const MyInt& _Other);
-
-    MyInt(int _Value);
-};
+#include "MyInt.h"
 
 int main()
 {
-    int Value = 0;
-    int Result = 0;
-
-    Result = ++Value;
-    Result = 0;
-    Result = Value++;
-
-
     MyInt MyValue = 0;
     MyInt MyResult = 0;
 
@@ -40,32 +17,7 @@ int main()
     int a = 0;
 }
 
-MyInt MyInt::operator++(int)
-{
-    //++Value;
-    MyInt tempMyInt = *this;
-    this->Value += 1;
-    return tempMyInt;
-};
 
-MyInt& MyInt::operator++()
-{
-    //Value++;
-    Value += 1;
-    return *this;
-};
-
-MyInt& MyInt::operator=(const MyInt& _Other)
-{
-    Value = _Other.Value;
-    return *this;
-};
-
-MyInt::MyInt(int _Value)
-        :Value(_Value)
-{
-
-};
 
 
 
