@@ -2,8 +2,18 @@
 //
 
 #include <iostream>
+#include "Fightzone.h"
+#include "Player.h"
+#include "Monster.h"
+
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Player NewPlayer = Player("Assortrock", 100, 10, 10, 10);
+    Monster NewMonster = Monster(0);
+ 
+    FightZone NewFightZone = {};
+    NewFightZone.Fight(NewPlayer, NewMonster);
+    return 0;
 }
