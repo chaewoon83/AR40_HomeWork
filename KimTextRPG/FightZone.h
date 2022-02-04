@@ -1,15 +1,17 @@
 #pragma once
 #include <cstdlib>
 #include <iostream>
+#include <conio.h>
 #include "Player.h"
 #include "Monster.h"
+#include "Skills.h"
 // Ό³Έν :
 class FightZone
 {
 private:
 
 public:
-	void Fight(Player& Player_, Monster& Monster_);
+	void Fight(Player& Player_, Monster& Monster_, Skills& Skills_);
 public:
 	// constrcuter destructer
 	FightZone();

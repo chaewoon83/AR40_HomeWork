@@ -1,25 +1,39 @@
 #include "FightZone.h"
 
-void FightZone::Fight(Player& Player_, Monster& Monster_)
+void FightZone::Fight(Player& Player_, Monster& Monster_, Skills& Skills_)
 {
 	while (Player_.getHp() > 0 && Monster_.getHp() > 0)
 	{
-		Monster_.Damaged(Player_.getAtt);
-
+		Monster_.Damaged(Skills_.BaseAttack(Player_.getAtt()));
 		{
-			printf_s("==============================");
-			printf_s("%s Hp : %d", Player_.getName(), Player_.getHp());
-			printf_s("%s Hp : %d", Monster_.getName(), Monster_.getHp());
-			printf_s("==============================");
-			printf_s("%s Dealt %d Damage to %s", Player_.getName(), Player_.getAtt(), Monster_.getName());
+			printf_s("==============================\n");
+			printf_s("%s Hp : %d\n", Player_.getName(), Player_.getHp());
+			printf_s("%s Hp : %d\n", Monster_.getName(), Monster_.getHp());
+			printf_s("==============================\n");
+			printf_s("%s Dealt %d Damage to %s\n", Player_.getName(), Player_.getAtt(), Monster_.getName());
 		}
-		Player
+
+		_getch();
+
+		if (Monster_.IsDeath())
 		{
-			printf_s("==============================");
-			printf_s("%s Hp : %d", Player_.getName(), Player_.getHp());
-			printf_s("%s Hp : %d", Monster_.getName(), Monster_.getHp());
-			printf_s("==============================");
-			printf_s("%s Dealt %d Damage to %s", Monster_.getName(), Monster_.getAtt(), Player_.getName());		}
+			break;
+		}
+		int MonsterDamage = Skills_.RandomAttack(Monster_.getAtt());
+		Player_.Damaged(MonsterDamage);
+		{
+			printf_s("==============================\n");
+			printf_s("%s Hp : %d\n", Player_.getName(), Player_.getHp());
+			printf_s("%s Hp : %d\n", Monster_.getName(), Monster_.getHp());
+			printf_s("==============================\n");
+			printf_s("%s Dealt %d Damage to %s\n", Monster_.getName(), MonsterDamage, Player_.getName());
+		}
+		_getch();
+
+		if (Player_.IsDeath())
+		{
+			break;
+		}
 	}
 }
 

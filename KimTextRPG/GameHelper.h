@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <random>
 
 // Ό³Έν :
 class GameHelper
@@ -7,7 +8,7 @@ class GameHelper
 private:
 
 public:
-	void TextResult(int PHp, int MHp, const char* PName, const char* MName);
+	int RandomGenerator(int n);
 public:
 	// constrcuter destructer
 	GameHelper();

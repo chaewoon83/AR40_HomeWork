@@ -5,15 +5,20 @@
 #include "Fightzone.h"
 #include "Player.h"
 #include "Monster.h"
+#include "Skills.h"
+#include "Map.h"
 
 
 
 int main()
 {
-    Player NewPlayer = Player("Assortrock", 100, 10, 10, 10);
-    Monster NewMonster = Monster(0);
+    Map NewMap = Map(6, 6);
+
+    //Player NewPlayer = Player("Assortrock", 100, 4, 10, 10, 10);
+    //Monster NewMonster = Monster(1);
+    //Skills NewSkills = {};
  
-    FightZone NewFightZone = {};
-    NewFightZone.Fight(NewPlayer, NewMonster);
-    return 0;
+    //FightZone NewFightZone = {};
+    //NewFightZone.Fight(NewPlayer, NewMonster, NewSkills);
+
 }

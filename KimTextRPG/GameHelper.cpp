@@ -1,11 +1,12 @@
 #include "GameHelper.h"
 
-void GameHelper::TextResult(int PHp, int MHp, const char* PName, const char* MName)
+int GameHelper::RandomGenerator(int n)
 {
-	printf_s("==============================");
-	printf_s("%s Hp : %d", PName, PHp);
-	printf_s("%s Hp : %d", MName, MHp);
-	printf_s("==============================");
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dis(0, n-1);
+	int result = dis(gen);
+	return result;
 }
 
 GameHelper::GameHelper() 
