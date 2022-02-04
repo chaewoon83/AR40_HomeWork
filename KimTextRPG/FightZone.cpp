@@ -5,6 +5,10 @@ void FightZone::Fight(Player& Player_, Monster& Monster_, Skills& Skills_)
 	while (Player_.getHp() > 0 && Monster_.getHp() > 0)
 	{
 		Monster_.Damaged(Skills_.BaseAttack(Player_.getAtt()));
+		if (Monster_.getHp() < 0)
+		{
+			Monster_.setHp(0);
+		}
 		{
 			printf_s("==============================\n");
 			printf_s("%s Hp : %d\n", Player_.getName(), Player_.getHp());
@@ -20,7 +24,12 @@ void FightZone::Fight(Player& Player_, Monster& Monster_, Skills& Skills_)
 			break;
 		}
 		int MonsterDamage = Skills_.RandomAttack(Monster_.getAtt());
+
 		Player_.Damaged(MonsterDamage);
+		if (Player_.getHp() < 0)
+		{
+			Player_.setHp(0);
+		}
 		{
 			printf_s("==============================\n");
 			printf_s("%s Hp : %d\n", Player_.getName(), Player_.getHp());

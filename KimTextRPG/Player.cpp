@@ -2,7 +2,7 @@
 #include <cstring>
 
 char DefaultName[50] = "New Player";
-int DefaultStat[10] = { 100, 5, 5, 3 ,5 };
+int DefaultStat[10] = { 100, 5, 5, 3 , 5 };
 
 void Player::Damaged(int Damage_)
 {
@@ -17,6 +17,11 @@ void Player::Healed(int Heal_)
 bool Player::IsDeath()
 {
 	return (Hp <= 0);
+}
+
+void Player::Move()
+{
+
 }
 
 const char* Player::getName()
@@ -49,6 +54,11 @@ int Player::getSpeed()
 	return Speed;
 }
 
+const int* Player::getPos()
+{
+	return Position;
+}
+
 void Player::setName(const char* Name_)
 {
 	Name = Name_;
@@ -79,6 +89,12 @@ void Player::setSpeed(int Speed_)
 	Speed = Speed_;
 }
 
+void Player::setPos(const int* Pos_)
+{
+	Position[0] = Pos_[0];
+	Position[1] = Pos_[1];
+}
+
 
 Player::Player()
 	:Name(DefaultName),
@@ -86,7 +102,8 @@ Player::Player()
 	Att(DefaultStat[1]),
 	Luck(DefaultStat[2]),
 	Def(DefaultStat[3]),
-	Speed(DefaultStat[4])
+	Speed(DefaultStat[4]),
+	Position{1, 1}
 
 {
 }
@@ -97,8 +114,8 @@ Player::Player(const char* Name_, int Hp_, int Att_, int Luck_, int Def_, int Sp
 	Att(Att_),
 	Luck(Luck_),
 	Def(Def_),
-	Speed(Speed_)
-
+	Speed(Speed_),
+	Position{1, 1}
 {
 }
 

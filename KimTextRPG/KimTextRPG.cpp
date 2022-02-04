@@ -12,13 +12,26 @@
 
 int main()
 {
-    Map NewMap = Map(6, 6);
+    Map NewMap = Map();
 
-    //Player NewPlayer = Player("Assortrock", 100, 4, 10, 10, 10);
-    //Monster NewMonster = Monster(1);
-    //Skills NewSkills = {};
- 
-    //FightZone NewFightZone = {};
-    //NewFightZone.Fight(NewPlayer, NewMonster, NewSkills);
+    Player NewPlayer = Player("Assortrock", 300, 4, 10, 10, 10);
+    Monster NewMonster[4] = {1,2,3,4};
+    Skills NewSkills = {};
+    FightZone NewFightZone = {};
+    NewMap.MapPrint(NewPlayer.getPos());
+    while (true)
+    {
+        int tempPlayerPos[2] = {};
+        tempPlayerPos[0] = NewPlayer.getPos()[0];
+        tempPlayerPos[1] = NewPlayer.getPos()[1];
+        NewPlayer.setPos(NewMap.PlayerMove(NewPlayer.getPos()));
+        NewMap.MapPrint(tempPlayerPos, NewPlayer.getPos());
+        printf_s("%d\n",NewMap.IsFight(NewPlayer.getPos()));
+        int MonIndex = NewMap.IsFight(NewPlayer.getPos());
+        if (MonIndex != 0)
+        {
+            NewFightZone.Fight(NewPlayer, NewMonster[MonIndex - 4], NewSkills);
+        }
+    }
 
 }
