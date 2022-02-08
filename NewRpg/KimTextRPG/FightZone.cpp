@@ -4,6 +4,7 @@ void FightZone::Fight(Player& Player_, Monster& Monster_, Skills& Skills_)
 {
 	while (Player_.getHp() > 0 && Monster_.getHp() > 0)
 	{
+		system("cls");
 		Monster_.Damaged(Skills_.BaseAttack(Player_.getAtt()));
 		if (Monster_.getHp() < 0)
 		{
@@ -23,6 +24,7 @@ void FightZone::Fight(Player& Player_, Monster& Monster_, Skills& Skills_)
 		{
 			break;
 		}
+		system("cls");
 		int MonsterDamage = Skills_.RandomAttack(Monster_.getAtt());
 
 		Player_.Damaged(MonsterDamage);

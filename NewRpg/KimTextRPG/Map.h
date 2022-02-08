@@ -3,6 +3,8 @@
 #include <conio.h>
 #include <windows.h>
 
+class Monster;
+class Player;
 // 설명 : 지도 및 게임 요소들의 위치 관리
 class Map
 {
@@ -10,11 +12,13 @@ private:
 	char MapPrintArr[100][100];
 	int MapArr[100][100];
 public:
-	void MapPrint(const int* NowPlayerPos);
-	void MapPrint(const int* PastPlayerPos, const int* NowPlayerPos);
-	const int* PlayerMove(const int* PlayerPos);
-	int IsFight(const int* PlayerPos);
-	bool IsTreasure(const int* PlayerPos);
+	void MapPrint(const int* NowPlayerPos_);
+	void MapPrint(const int* PastPlayerPos_, const int* NowPlayerPos_);
+	const int* PlayerMove(const int* PlayerPos_);
+	bool IsFight(const int* PlayerPos_);
+	int WhichMon(const int* PlayerPos_);
+	bool IsTreasure(const int* PlayerPos_);
+	void RemoveMonster(const int* PlayerPos_, bool IsGone_, Monster& Monster_);
 public:
 	// constrcuter destructer
 	Map();

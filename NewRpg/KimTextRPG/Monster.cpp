@@ -3,7 +3,7 @@
 
 char MonName[10][50] = { "Default Monster", "Slime", "Skeleton", "Golem", "Dragon" };
 //"Hp, Att, Luck, Def" in order
-int MonStat[10][10] = { { 10, 1, 1, 1 , 1 }, { 10, 4, 1, 0, 3 },
+int MonStat[10][10] = { { 0, 0, 0, 0 , 0 }, { 10, 4, 1, 0, 3 },
 	{ 20, 5, 3, 2, 4}, { 25, 6, 5, 3, 5 }, { 50, 10, 7, 5, 7 } };
 
 void Monster::Damaged(int Damage_)
@@ -97,7 +97,7 @@ Monster::Monster()
 	Luck(MonStat[0][2]),
 	Def(MonStat[0][3]),
 	Speed(MonStat[0][4])
-{
+{ 
 }
 
 Monster::Monster(int MonNum_)

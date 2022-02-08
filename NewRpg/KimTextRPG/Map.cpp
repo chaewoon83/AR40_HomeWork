@@ -1,4 +1,5 @@
 #include "Map.h"
+
 //1. Road
 int MapRoad[8][8] =
 { {0, 0, 0, 0, 0, 0, 0} ,
@@ -9,14 +10,35 @@ int MapRoad[8][8] =
   {0, 1, 0, 1, 1, 1, 0} ,
   {0, 0, 0, 0, 0, 0, 0} 
 };
-//1. Player, 2. treasure, 3. Fountain, 5. Slime, 6. Skeleton, 7. Golem, 8. Dragon
+
+//1. Player, 2. treasure, 3. Fountain, 5. Monster
 int MapExist[8][8] =
 { {0, 0, 0, 0, 0, 0, 0} ,
-  {0, 0, 0, 8, 0, 0, 0} ,
+  {0, 0, 0, 5, 0, 0, 0} ,
   {0, 0, 0, 0, 2, 0, 0} ,
-  {0, 5, 0, 0, 0, 7, 0} ,
+  {0, 5, 0, 0, 0, 5, 0} ,
   {0, 0, 0, 0, 0, 0, 0} ,
-  {0, 2, 0, 6, 0, 0, 0} ,
+  {0, 2, 0, 5, 0, 0, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} };
+
+//1. Treasure
+int MaterialExist[8][8] =
+{ {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 0, 0, 0, 1, 0, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 1, 0, 0, 0, 0, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} };
+
+//1. Slime, 2. Skeleton, 3. Golem, 4. Dragon
+int MonExist[8][8] =
+{ {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 0, 0, 4, 0, 0, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 1, 0, 0, 0, 3, 0} ,
+  {0, 0, 0, 0, 0, 0, 0} ,
+  {0, 0, 0, 2, 0, 0, 0} ,
   {0, 0, 0, 0, 0, 0, 0} };
 
 int PlayerExist[8][8] =
@@ -31,8 +53,7 @@ int PlayerExist[8][8] =
 int Width = 7;
 int Height = 7;
 
-
-void Map::MapPrint(const int* PastPlayerPos, const int* NowPlayerPos)
+void Map::MapPrint(const int* PastPlayerPos_, const int* NowPlayerPos_)
 {
 	//¡á : Wall, ¡à : Road, ¡Û : Player, ¡Ù : Treasure, 
 	char fullsquare[3] = "¡á";
@@ -40,8 +61,8 @@ void Map::MapPrint(const int* PastPlayerPos, const int* NowPlayerPos)
 	char circle[3] = "¡Û";
 	char star[3] = "¡Ù";
 	char triangle[3] = "¡ä";
-	PlayerExist[PastPlayerPos[1]][PastPlayerPos[0]] = 0;
-	PlayerExist[NowPlayerPos[1]][NowPlayerPos[0]] = 1;
+	PlayerExist[PastPlayerPos_[1]][PastPlayerPos_[0]] = 0;
+	PlayerExist[NowPlayerPos_[1]][NowPlayerPos_[0]] = 1;
 	for(int y = 0; y < Height; y += 1)
 	{
 		for (int x = 0; x < Width; x += 1)
@@ -66,16 +87,13 @@ void Map::MapPrint(const int* PastPlayerPos, const int* NowPlayerPos)
 					MapPrintArr[y][2 * x] = fullsquare[0];
 					MapPrintArr[y][2 * x + 1] = fullsquare[1];
 					break;
+				case 5:
+					MapPrintArr[y][2 * x] = triangle[0];
+					MapPrintArr[y][2 * x + 1] = triangle[1];
+					break;
 				case 2:
 					MapPrintArr[y][2 * x] = star[0];
 					MapPrintArr[y][2 * x + 1] = star[1];
-					break;
-				case 5:
-				case 6:
-				case 7:
-				case 8:
-					MapPrintArr[y][2 * x] = triangle[0];
-					MapPrintArr[y][2 * x + 1] = triangle[1];
 					break;
 				}
 			}
@@ -87,10 +105,10 @@ void Map::MapPrint(const int* PastPlayerPos, const int* NowPlayerPos)
 	{
 	printf_s(MapPrintArr[y]);
 	}
-	int a = 0;
+
 }
 
-void Map::MapPrint(const int* NowPlayerPos)
+void Map::MapPrint(const int* NowPlayerPos_)
 {
 	//¡á : Wall, ¡à : Road, ¡Û : Player, ¡Ù : Treasure, 
 	char fullsquare[3] = "¡á";
@@ -98,7 +116,7 @@ void Map::MapPrint(const int* NowPlayerPos)
 	char circle[3] = "¡Û";
 	char star[3] = "¡Ù";
 	char triangle[3] = "¡ä";
-	PlayerExist[NowPlayerPos[1]][NowPlayerPos[0]] = 1;
+	PlayerExist[NowPlayerPos_[1]][NowPlayerPos_[0]] = 1;
 	for (int y = 0; y < Height; y += 1)
 	{
 		for (int x = 0; x < Width; x += 1)
@@ -147,7 +165,7 @@ void Map::MapPrint(const int* NowPlayerPos)
 	int a = 0;
 }
 
-const int* Map::PlayerMove(const int*PlayerPos)
+const int* Map::PlayerMove(const int* PlayerPos_)
 {
 	int Move[2] = { 0,0 };
 	Sleep(50);
@@ -183,8 +201,8 @@ const int* Map::PlayerMove(const int*PlayerPos)
 		printf_s("Please Enter Direction\n");
 	}
 	int PosChanged[2] = { 0,0 };
-	PosChanged[0] = Move[0] + PlayerPos[0];
-	PosChanged[1] = Move[1] + PlayerPos[1];
+	PosChanged[0] = Move[0] + PlayerPos_[0];
+	PosChanged[1] = Move[1] + PlayerPos_[1];
 	MapRoad[1][1] == 1;
 	switch (MapRoad[PosChanged[1]][PosChanged[0]])
 	{
@@ -204,11 +222,11 @@ const int* Map::PlayerMove(const int*PlayerPos)
 		}
 		if (Move[1] == 1)
 		{
-			printf_s("Player Moved Up\n");
+			printf_s("Player Moved Down\n");
 		}
 		if (Move[1] == -1)
 		{
-			printf_s("Player Moved Down\n");
+			printf_s("Player Moved Up\n");
 		}
 		break;
 	default:
@@ -218,22 +236,35 @@ const int* Map::PlayerMove(const int*PlayerPos)
 	return PosChanged;
 }
 
-int Map::IsFight(const int* PlayerPos) 
+bool Map::IsFight(const int* PlayerPos_) 
 {
-	if (MapExist[PlayerPos[1]][PlayerPos[0]] >= 5)
-	{
-		return MapExist[PlayerPos[1]][PlayerPos[0]];
-	}
-	return 0;
-}
-
-bool Map::IsTreasure(const int* PlayerPos)
-{
-	if (MapExist[PlayerPos[1]][PlayerPos[0]] == 0)
+	if (MapExist[PlayerPos_[1]][PlayerPos_[0]] >= 5)
 	{
 		return true;
 	}
 	return false;
+}
+
+int Map::WhichMon(const int* PlayerPos_)
+{
+	return MonExist[PlayerPos_[1]][PlayerPos_[0]];
+}
+
+
+
+bool Map::IsTreasure(const int* PlayerPos_)
+{
+	if (MapExist[PlayerPos_[1]][PlayerPos_[0]] == 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+void Map::RemoveMonster(const int* PlayerPos_, bool IsGone_, Monster& Monster_)
+{
+	MapExist[PlayerPos_[1]][PlayerPos_[0]] = 0;
+	MonExist[PlayerPos_[1]][PlayerPos_[0]] = 0;
 }
 
 Map::Map()
