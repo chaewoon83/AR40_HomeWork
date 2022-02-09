@@ -51,7 +51,7 @@ void TextScreen::CreateScreen(int _Width, int _Height, const char* _DefaultValue
 void TextScreen::SettingScreen() 
 {
 	int RealWidth = Size_.x_ * 2;
-	RealWidth += 1;
+	RealWidth += 2;
 
 	for (int y = 0; y < Size_.y_; y++)
 	{
