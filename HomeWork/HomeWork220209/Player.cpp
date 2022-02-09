@@ -1,10 +1,77 @@
 #include "Player.h"
+#include <conio.h>
 
-Player::Player() 
+Player::Player(TextScreen* _Screen, const char* _Text)
+	: Screen_(_Screen)
+	, Pos_(_Screen->GetSize().GetHalfVector())
+	, Text_()
 {
+	if (nullptr == _Screen)
+	{
+		assert(false);
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		Text_[i] = _Text[i];
+	}
+
+	// Pos_ = ;
 }
 
 Player::~Player() 
 {
 }
 
+
+void Player::Update() 
+{
+	// Pos_.x_ += 1; // Pos_.y_ += 0;
+	//   'a'
+	int Value = _getch();
+
+	switch (Value)
+	{
+	case 'a':
+	case 'A':
+		Pos_.x_ -= 1;
+		break;
+	case 'd':
+	case 'D':
+		Pos_.x_ += 1;
+		break;
+	case 'w':
+	case 'W':
+		Pos_.y_ -= 1;
+		break;
+	case 's':
+	case 'S':
+		Pos_.y_ += 1;
+		break;
+	default:
+		break;
+	}
+	if (CheckPos() == false)
+	{
+		assert(false);
+	}
+
+}
+
+void Player::Render() 
+{
+	Screen_->SetPixel(Pos_, Text_);
+}
+
+bool Player::CheckPos()
+{
+	int ScreenSizex = Screen_->GetSize().x_;
+	int ScreenSizey = Screen_->GetSize().y_;
+
+	if (0 <= Pos_.x_ && Pos_.x_ < ScreenSizex && 
+		0 <= Pos_.y_ && Pos_.y_ < ScreenSizey)
+	{
+		return true;
+	}
+	return false;
+}

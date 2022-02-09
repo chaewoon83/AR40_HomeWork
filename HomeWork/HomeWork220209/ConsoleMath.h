@@ -20,31 +20,45 @@ private:
 
 };
 
-
 class ConsoleVector
 {
 public:
-	int X;
-	int Y;
+	int x_;
+	int y_;
 
-	//        X Y
-	// Player 0 0 
-	//        1 0 
-	//        1 0
+	ConsoleVector()
+		: x_(0), y_(0)
+	{
 
-public:
+	}
+
+	ConsoleVector(int _x, int _y)
+		: x_(_x), y_(_y)
+	{
+
+	}
+
+	ConsoleVector GetHalfVector() 
+	{
+		// 이니셜라이즈 리스트라는 
+		// 클래스를 생성자에 맞춰서 배열처럼 
+		// 초기화할수 있는 기능을 의미합니다.
+		// return {x_ / 2, y_ / 2 };
+		return ConsoleVector( x_ / 2, y_ / 2 );
+	}
+
 	ConsoleVector operator+(const ConsoleVector& _Other) 
 	{
 		ConsoleVector Result;
-		Result.X = X + _Other.X;
-		Result.Y = Y + _Other.Y;
+		Result.x_ = x_ + _Other.x_;
+		Result.y_ = y_ + _Other.y_;
 		return Result;
 	}
 
 	ConsoleVector& operator+=(const ConsoleVector& _Other)
 	{
-		X += _Other.X;
-		Y += _Other.Y;
+		x_ += _Other.x_;
+		y_ += _Other.y_;
 		return *this;
 	}
 };

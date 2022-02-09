@@ -11,13 +11,21 @@ int main()
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
     // 스택에 n바이트가 할당되었을것이다
-    TextScreen NewScreen;
+    TextScreen NewScreen(10, 10, "ㅁ");
 
-    Player NewPlayer;
+    Player NewPlayer(&NewScreen, "★");
 
-    NewScreen.CreateScreen(3, 3, "□");
+    NewScreen.SettingScreen();
 
-    NewScreen.SetPixel(NewPlayer.GetPos(), "★");
+    // ㅁㅁㅁ
+    // ㅁ★ㅁ
+    // ㅁㅁㅁ
 
-    NewScreen.PrintScreen();
+    while (true)
+    {
+        NewScreen.SettingScreen();
+        NewPlayer.Render();
+        NewScreen.PrintScreen();
+        NewPlayer.Update();
+    }
 }

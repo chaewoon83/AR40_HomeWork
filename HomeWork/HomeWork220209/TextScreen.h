@@ -1,30 +1,14 @@
 #pragma once
 #include "ConsoleMath.h"
+#include <assert.h>
 
 // 설명 :
 class TextScreen
 {
 public:
-	// 고정되어서 절대로 바꿀수 없다.
-	// 맴버 정적 배열
-	// 그래도 정적배열이기 때문에 고칠수가 없습니다.
-	// 이걸로 해결이 된다면
 
-	int Width_;
-	int Height_;
-	char** PixelData_;
-	// 이녀석은 값 그자체를 들고 있을 것이므로 포인터 이면 안됩니다.
-	char DefaultPixel_[3];
-
-	// 화면의 너비와 높이 그리고 화면을 채울 _DefaultValue를 세팅한다.
-	void CreateScreen(int _Width, int _Height, const char* _DefaultValue);
-
-	// 세팅된 값으로 그린다.
-	void PrintScreen();
-
-public:
 	// constrcuter destructer
-	TextScreen();
+	TextScreen(int _Width, int _Height, const char* _DefaultValue);
 	~TextScreen();
 
 	// delete Function
@@ -33,12 +17,33 @@ public:
 	TextScreen& operator=(const TextScreen& _Other) = delete;
 	TextScreen& operator=(TextScreen&& _Other) noexcept = delete;
 
+
+	ConsoleVector GetSize() 
+	{
+		return Size_;
+	}
+
+	// 화면의 글자를 동적으로 할당하여 메모리를 만들어내는 작업
+	void CreateScreen(int _Width, int _Height, const char* _DefaultValue);
+
+	// DefaultPixel_의 문자열 앞쪽 2바이트로 화면을 전부 초기화 한다.
+	void SettingScreen();
+
+	// PixelData_의 내용을 모두 화면에 출력한다.
+	void PrintScreen();
+
+	// X Y위치에 글자를 출력한다.
 	void SetPixel(ConsoleVector _Pos, const char* _DefaultValue);
 	void SetPixel(int _X, int _Y, const char* _DefaultValue);
+
+	
 
 protected:
 
 private:
+	ConsoleVector Size_;
+	char** PixelData_;
+	char DefaultPixel_[3];
 
 };
 
