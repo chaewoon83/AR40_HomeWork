@@ -23,6 +23,10 @@ int main()
 	int P[3] = {1,1};
 	NewPlayer.Move(P);
 
+	int ExInt[3] = {0,1,2};
+
+
+
 	return 0;
 }
 

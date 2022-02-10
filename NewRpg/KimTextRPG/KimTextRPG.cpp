@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <Windows.h>
 #include "Fightzone.h"
 #include "Player.h"
 #include "Monster.h"
@@ -18,19 +19,21 @@ int main()
     Monster NewMonster[4] = {1,2,3,4};
     Skills NewSkills = {};
     FightZone NewFightZone = {};
-    NewMap.MapPrint(NewPlayer.getPos());
+    //NewMap.MapPrint(NewPlayer.getPos());
     while (true)
     {
-        int tempPlayerPos[2] = {};
-        tempPlayerPos[0] = NewPlayer.getPos()[0];
-        tempPlayerPos[1] = NewPlayer.getPos()[1];
+        int PastPlayerPos[2] = {};
+        PastPlayerPos[0] = NewPlayer.getPos()[0];
+        PastPlayerPos[1] = NewPlayer.getPos()[1];
         NewPlayer.setPos(NewMap.PlayerMove(NewPlayer.getPos()));
-        NewMap.MapPrint(tempPlayerPos, NewPlayer.getPos());
-        printf_s("%d\n",NewMap.IsFight(NewPlayer.getPos()));
-        int MonIndex = NewMap.IsFight(NewPlayer.getPos());
-        if (MonIndex != 0)
+        int NowPlayerPos[2] = {};
+        NowPlayerPos[0] = NewPlayer.getPos()[0];
+        NowPlayerPos[1] = NewPlayer.getPos()[1];
+        NewMap.MapPrint(PastPlayerPos, NowPlayerPos);
+
+        if (NewMap.IsFight(NowPlayerPos))
         {
-            NewFightZone.Fight(NewPlayer, NewMonster[MonIndex - 4], NewSkills);
+            NewFightZone.Fight(NewPlayer, NewMonster[NewMap.WhichMon(NowPlayerPos)], NewSkills);
         }
     }
 
