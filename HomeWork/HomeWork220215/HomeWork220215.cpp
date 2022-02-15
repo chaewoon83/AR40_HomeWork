@@ -122,6 +122,11 @@ int main()
         NewArray2[i] = i+1;
     }
 
+    for (size_t i = 0; i < NewArray3.GetSize(); i++)
+    {
+        NewArray3[i] = i + 1;
+    }
+
     //NewArray.AllValueSetting(0);
 
     //NewArray2 = NewArray;
@@ -134,11 +139,11 @@ int main()
         std::cout << NewArray2[i] << std::endl;
     }
 
-    NewArray2.ReSize(30);
+    NewArray3.ReSize(10);
 
     for (size_t i = 0; i < NewArray2.GetSize(); i++)
     {
-        std::cout << NewArray2[i] << std::endl;
+        std::cout << NewArray3[i] << std::endl;
     }
 
 
