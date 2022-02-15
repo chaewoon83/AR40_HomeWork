@@ -119,7 +119,7 @@ int main()
 
     for (size_t i = 0; i < NewArray.GetSize(); i++)
     {
-        NewArray2[i] = 2*i;
+        NewArray2[i] = i+1;
     }
 
     //NewArray.AllValueSetting(0);
