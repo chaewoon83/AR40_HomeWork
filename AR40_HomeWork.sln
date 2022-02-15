@@ -33,7 +33,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeWork220209", "HomeWork\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CmdTextRPG_v2", "CmdTextRPG_v2\CmdTextRPG_v2.vcxproj", "{F87A8E24-75BC-42E9-B55D-EF11C83A8E67}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeWork220210", "HomeWork220210\HomeWork220210.vcxproj", "{E4AFE9C2-2227-4135-B75C-887DFA9221B3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeWork220210", "HomeWork\HomeWork220210\HomeWork220210.vcxproj", "{E4AFE9C2-2227-4135-B75C-887DFA9221B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
