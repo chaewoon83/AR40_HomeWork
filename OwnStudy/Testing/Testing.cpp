@@ -25,6 +25,15 @@ int main()
 
 	int ExInt[3] = {0,1,2};
 
+	{
+		int num1 = 1;
+		int num2 = 2;
+		int& ref = num1; // ref와 num1은 같음
+		ref = num2;
+		int a = 0;
+	}
+
+
 
 
 	return 0;
