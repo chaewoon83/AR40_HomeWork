@@ -90,7 +90,11 @@ public:
         ArrData_ = new DataType[_Size];
         Size_ = _Size;
         CopyArr(ArrData_, tempArrData, Size_);
-
+        if (nullptr != ArrData_)
+        {
+            delete[] tempArrData;
+            tempArrData = nullptr;
+        }
     }
 
 public:
