@@ -36,6 +36,18 @@ int main()
 	{
 		Player NewPlayer;
 	}
+	{
+		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+		int* Arr1 = new int[3];
+		int* Arr2 = Arr1;
+		Arr1 = new int[3];
+		int size = sizeof(Arr2);
+		int int1 = Arr2[2];
+		delete Arr2;
+		delete[] Arr1;
+		int a = 0;
+	}
+
 
 	return 0;
 }
