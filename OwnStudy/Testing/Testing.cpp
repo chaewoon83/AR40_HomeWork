@@ -33,12 +33,17 @@ int main()
 		int a = 0;
 	}
 
+	{
+		Player NewPlayer;
+	}
+
 	return 0;
 }
 
 Player::Player()
 	: Att_(20)
 {
+	std::cout << "생성자" << std::endl;
 }
 void Player::Move(const int* Pos)
 {

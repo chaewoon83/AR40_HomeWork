@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{050ba1f7-93e2-48d6-ad59-09ec8ef82049}</ProjectGuid>
-    <RootNamespace>Snake</RootNamespace>
+    <ProjectGuid>{d3af8ae9-82b7-443f-a4c7-a5656ab85a8b}</ProjectGuid>
+    <RootNamespace>HomeWork220222</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>HomeWork220221</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,46 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Body.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Engine\ConsoleMath.cpp" />
-    <ClCompile Include="Engine\ConsoleObject.cpp" />
-    <ClCompile Include="Engine\ConsoleRandom.cpp" />
-    <ClCompile Include="Engine\ConsoleScreen.cpp" />
-    <ClCompile Include="GameBlock.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GlobalGameLogic.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Head.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="HomeWork220222.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Body.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Engine\ConsoleMath.h" />
-    <ClInclude Include="Engine\ConsoleObject.h" />
-    <ClInclude Include="Engine\ConsoleRandom.h" />
-    <ClInclude Include="Engine\ConsoleScreen.h" />
-    <ClInclude Include="GameBlock.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="GlobalGameLogic.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Head.h">
+    <ClInclude Include="GameVector.h">
       <SubType>
       </SubType>
     </ClInclude>
