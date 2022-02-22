@@ -33,9 +33,6 @@ int main()
 		int a = 0;
 	}
 
-
-
-
 	return 0;
 }
 
@@ -50,3 +47,4 @@ void Player::Move(const int* Pos)
 	int b = Position[Pos[0]][ Pos[1]];
 	int a = 0;
 }
+
