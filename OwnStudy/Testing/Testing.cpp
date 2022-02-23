@@ -48,6 +48,11 @@ int main()
 		int a = 0;
 	}
 
+	{
+		int a = 3;
+		int* Arr2 = &a;
+	}
+
 
 	return 0;
 }
