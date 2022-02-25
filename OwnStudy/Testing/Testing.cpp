@@ -6,6 +6,7 @@ public:
 	int Att_;
 public:
 	Player();
+	Player();
 	void Move(const int* Pos);
 };
 
