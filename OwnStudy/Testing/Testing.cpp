@@ -48,7 +48,10 @@ int main()
 
 	{
 		int a = 3;
-		int* Arr2 = &a;
+		int* const Arr2 = &a;
+		int* Arr3 = &a;
+		*Arr2 = 2;
+		//Arr2 = Arr3;
 	}
 
 
