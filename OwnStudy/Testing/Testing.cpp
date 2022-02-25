@@ -41,8 +41,6 @@ int main()
 		int* Arr1 = new int[3];
 		int* Arr2 = Arr1;
 		Arr1 = new int[3];
-		int size = sizeof(Arr2);
-		int int1 = Arr2[2];
 		delete Arr2;
 		delete[] Arr1;
 		int a = 0;
