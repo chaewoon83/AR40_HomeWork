@@ -4,8 +4,11 @@ int Position[2][2] = { {1,2}, {3,4} };
 class Player {
 public:
 	int Att_;
+	int Att_1;
+	int Att_2;
+	int Att_3;
+	int Att_4;
 public:
-	Player();
 	Player();
 	void Move(const int* Pos);
 };
@@ -54,7 +57,21 @@ int main()
 		*Arr2 = 2;
 		//Arr2 = Arr3;
 	}
+	{
+		int Mint0 = 3;
+		int* Mint0Ptr = &Mint0;
+		int& Mint0Ref = Mint0;
+		Player NewPlayer;
+		Player& NPRef = NewPlayer;
+		Player* NPPtr = &NewPlayer;
 
+		int a = sizeof(Mint0Ref);
+		int b = sizeof(Mint0Ptr);
+		int a1 = sizeof(NPRef);
+		int b1 = sizeof(NPPtr);
+
+		int c = 0;
+	}
 
 	return 0;
 }
